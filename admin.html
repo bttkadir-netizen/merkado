@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yönetim Paneli | MERKADO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <span>⚡ Hızlı teslimat</span>
+        <span>💳 Demo ödeme sistemi aktif</span>
+        <span>🛡️ Güvenli ve mobil uyumlu</span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand-wrap">
+          <a href="index.html" class="brand-link">
+            <div class="brand-mark">M</div>
+            <div>
+              <div class="brand">MERKADO</div>
+              <small>Alışverişin Yeni Merkezi</small>
+            </div>
+          </a>
+        </div>
+
+        <nav class="main-nav" aria-label="Ana menü">
+          <a href="index.html">Ana Sayfa</a>
+          <a href="index.html#urunler">Ürünler</a>
+          <a href="product.html">Ürün Detayı</a>
+          <a href="admin.html">Yönetim</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="cart-btn" aria-label="Sepet" id="cartToggle">🛒 <span id="cartCount">0</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Yönetim paneli</span>
+          <h1>Satış ve ürün yönetimi</h1>
+          <p>Ürün ekleme, fiyat/stok yönetimi, sipariş takibi ve satış raporları için yönetim arayüzü.</p>
+        </div>
+      </section>
+
+      <section class="container" style="padding-top: 42px;">
+        <div class="admin-layout">
+          <div class="table-wrap">
+            <h3>Ürünler</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Ürün</th>
+                  <th>Kategori</th>
+                  <th>Fiyat</th>
+                  <th>Durum</th>
+                  <th>Stok</th>
+                </tr>
+              </thead>
+              <tbody id="adminTable"></tbody>
+            </table>
+          </div>
+
+          <div class="feature-box">
+            <h3>Yeni ürün ekle</h3>
+            <form id="adminForm" class="admin-form">
+              <label>
+                Ürün adı
+                <input type="text" placeholder="Örn: PUBG UC 60 TL" required />
+              </label>
+              <label>
+                Kategori
+                <select>
+                  <option>PUBG UC</option>
+                  <option>Oyun Hesapları</option>
+                  <option>Oyun Ürünleri</option>
+                  <option>Dijital Ürünler</option>
+                </select>
+              </label>
+              <label>
+                Fiyat
+                <input type="number" placeholder="₺" min="0" required />
+              </label>
+              <button type="submit" class="primary-btn full">Kaydet</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-panel" id="cartPanel" aria-label="Sepet paneli">
+      <div class="cart-header">
+        <h3>Sepetim</h3>
+        <button id="closeCart" class="close-btn" aria-label="Sepeti kapat">✕</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Toplam</span>
+          <strong id="cartTotal">₺0</strong>
+        </div>
+        <button id="checkoutBtn" class="primary-btn full">Demo Ödeme ile Devam Et</button>
+        <p class="demo-note">
+          Not: Gerçek ödeme ve teslimat işlemleri için sunucu tarafı güvenlik ve entegrasyon gereklidir.
+        </p>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="brand">MERKADO</div>
+          <p>Alışverişin Yeni Merkezi</p>
+        </div>
+        <div>
+          <h4>İletişim</h4>
+          <p>destek@merkado.com</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
