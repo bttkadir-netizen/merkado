@@ -1,0 +1,125 @@
+
+
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MERKADO | Alışverişin Yeni Merkezi</title>
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{background:#0b0b0b;color:white;font-family:Arial,sans-serif}
+
+header{padding:22px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #292929}
+
+.logo{font-size:27px;font-weight:900;color:#d6ad55;letter-spacing:2px}
+
+nav a{color:white;text-decoration:none;margin-left:20px;font-size:14px}
+
+.hero{text-align:center;padding:85px 20px 65px;background:radial-gradient(circle,#292014,#0b0b0b 65%)}
+
+.hero h1{font-size:48px;color:#e2bc70;margin-bottom:18px}
+
+.hero p{color:#bbb;font-size:17px}
+
+.search{margin:30px auto;max-width:550px;display:flex}
+
+.search input{flex:1;padding:16px;border:1px solid #555;background:#171717;color:white;border-radius:8px 0 0 8px}
+
+.search button{padding:15px 22px;background:#d6ad55;border:0;font-weight:bold;border-radius:0 8px 8px 0}
+
+.categories{padding:35px 7%}
+
+.categories h2{color:#e2bc70;margin-bottom:25px}
+
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+
+.card{background:#171717;border:1px solid #303030;border-radius:12px;padding:30px 15px;text-align:center}
+
+.card span{font-size:30px}
+
+.card h3{margin-top:12px;font-size:16px}
+
+footer{text-align:center;padding:30px;color:#888;border-top:1px solid #292929;margin-top:60px}
+
+@media(max-width:650px){
+
+header{padding:18px 5%}
+
+nav a{margin-left:9px;font-size:11px}
+
+.hero h1{font-size:35px}
+
+.cards{grid-template-columns:repeat(2,1fr)}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">MERKADO</div>
+
+<nav>
+
+<a href="#">Ana Sayfa</a>
+
+<a href="#kategoriler">Kategoriler</a>
+
+<a href="#">Giriş</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>ALIŞVERİŞİN YENİ MERKEZİ</h1>
+
+<p>Aradığın her şey, tek bir yerde.</p>
+
+<div class="search">
+
+<input type="text" placeholder="Ürün veya kategori ara...">
+
+<button>Ara</button>
+
+</div>
+
+</section>
+
+<section class="categories" id="kategoriler">
+
+<h2>Kategoriler</h2>
+
+<div class="cards">
+
+<div class="card"><span>🛍️</span><h3>E-Ticaret</h3></div>
+
+<div class="card"><span>🎮</span><h3>Oyun Ürünleri</h3></div>
+
+<div class="card"><span>💎</span><h3>Dijital Ürünler</h3></div>
+
+<div class="card"><span>🎁</span><h3>Kampanyalar</h3></div>
+
+</div>
+
+</section>
+
+<footer>© 2026 MERKADO – Tüm hakları saklıdır.</footer>
+
+</body>
+
+</html>
