@@ -1,125 +1,553 @@
-
-
 <!DOCTYPE html>
-
 <html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MERKADO - oyun ürünleri, dijital ürünler ve e-ticaret platformu." />
+    <title>MERKADO | Alışverişin Yeni Merkezi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <span>⚡ Hızlı teslimat</span>
+        <span>💳 Demo ödeme sistemi aktif</span>
+        <span>🛡️ Güvenli ve mobil uyumlu</span>
+      </div>
+    </div>
 
-<head>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand-wrap">
+          <div class="brand-mark">M</div>
+          <div>
+            <div class="brand">MERKADO</div>
+            <small>Alışverişin Yeni Merkezi</small>
+          </div>
+        </div>
 
-<meta charset="UTF-8">
+        <nav class="main-nav" aria-label="Ana menü">
+          <a href="#anasayfa">Ana Sayfa</a>
+          <a href="#kategoriler">Kategoriler</a>
+          <a href="#urunler">Ürünler</a>
+          <a href="#siparisler">Siparişlerim</a>
+          <a href="#destek">Müşteri Desteği</a>
+        </nav>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <div class="header-actions">
+          <button class="ghost-btn" data-open-auth="login">Giriş</button>
+          <button class="primary-btn" data-open-auth="register">Kayıt Ol</button>
+          <button class="cart-btn" aria-label="Sepet" id="cartToggle">
+            🛒 <span id="cartCount">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
 
-<title>MERKADO | Alışverişin Yeni Merkezi</title>
+    <main id="anasayfa">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">OYUN, DİJİTAL VE KATEGORİK ÜRÜNLER</span>
+            <h1>Alışverişin Yeni Merkezi</h1>
+            <p>
+              PUBG UC, oyun hesapları, dijital ürünler ve popüler kategoriler için güvenli,
+              hızlı ve modern bir alışveriş deneyimi yaşayın.
+            </p>
 
-<style>
+            <div class="hero-search">
+              <input id="mainSearch" type="text" placeholder="Ürün, kategori veya oyun ara..." />
+              <button class="primary-btn" id="searchBtn">Ara</button>
+            </div>
 
-*{margin:0;padding:0;box-sizing:border-box}
+            <div class="hero-meta">
+              <div>
+                <strong>10K+</strong>
+                <span>Mutlu müşteri</span>
+              </div>
+              <div>
+                <strong>2dk</strong>
+                <span>Ortalama teslimat</span>
+              </div>
+              <div>
+                <strong>24/7</strong>
+                <span>Destek</span>
+              </div>
+            </div>
+          </div>
 
-body{background:#0b0b0b;color:white;font-family:Arial,sans-serif}
+          <div class="hero-feature">
+            <div class="promo-card">
+              <div class="promo-header">
+                <span class="status-dot"></span>
+                <small>Öne Çıkan Teklif</small>
+              </div>
+              <h3>PUBG UC Paketi</h3>
+              <p>En uygun fiyatlar ve hızlı teslimat.</p>
+              <div class="price-row">
+                <strong>₺299</strong>
+                <span>₺399</span>
+              </div>
+              <button class="primary-btn">Şimdi Al</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-header{padding:22px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #292929}
+      <section class="categories container" id="kategoriler">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">KATEGORİLER</span>
+            <h2>Aradığın her şey burada</h2>
+          </div>
+        </div>
 
-.logo{font-size:27px;font-weight:900;color:#d6ad55;letter-spacing:2px}
+        <div class="category-grid">
+          <article class="category-card">
+            <span>🎮</span>
+            <h3>Oyun Ürünleri</h3>
+            <p>PUBG UC, valorant, steam ve daha fazlası.</p>
+          </article>
+          <article class="category-card">
+            <span>💎</span>
+            <h3>Pubg UC</h3>
+            <p>Hızlı yükleme ve güvenli teslimat.</p>
+          </article>
+          <article class="category-card">
+            <span>🧩</span>
+            <h3>Oyun Hesapları</h3>
+            <p>Premium hesaplar ve hesap paketleri.</p>
+          </article>
+          <article class="category-card">
+            <span>📦</span>
+            <h3>Dijital Ürünler</h3>
+            <p>Gift card, abonelik ve dijital kodlar.</p>
+          </article>
+        </div>
+      </section>
 
-nav a{color:white;text-decoration:none;margin-left:20px;font-size:14px}
+      <section class="products container" id="urunler">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">ÖNE ÇIKANLAR</span>
+            <h2>Günün fırsatları</h2>
+          </div>
+          <button class="ghost-btn">Tüm Ürünleri Gör</button>
+        </div>
 
-.hero{text-align:center;padding:85px 20px 65px;background:radial-gradient(circle,#292014,#0b0b0b 65%)}
+        <div class="product-grid" id="productGrid"></div>
+      </section>
 
-.hero h1{font-size:48px;color:#e2bc70;margin-bottom:18px}
+      <section class="benefits">
+        <div class="container">
+          <div class="section-head center">
+            <div>
+              <span class="eyebrow">NEDEN MERKADO?</span>
+              <h2>Güvenli ve hızlı alışveriş</h2>
+            </div>
+          </div>
 
-.hero p{color:#bbb;font-size:17px}
+          <div class="benefit-grid">
+            <article>
+              <div class="icon">🔒</div>
+              <h3>Güvenli Oturum</h3>
+              <p>Kullanıcı kimlik doğrulama ve güvenli erişim altyapısı.</p>
+            </article>
+            <article>
+              <div class="icon">⚡</div>
+              <h3>Hızlı Teslimat</h3>
+              <p>Dijital ürünler anlık, fiziksel ürünler işleme odaklı teslim edilir.</p>
+            </article>
+            <article>
+              <div class="icon">💳</div>
+              <h3>Demo Ödeme</h3>
+              <p>Gerçek ödeme sistemi kurulana kadar demo ödeme kullanılır. Gerçek işlemler için güvenli sunucu tarafı entegrasyonu gerekir.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-.search{margin:30px auto;max-width:550px;display:flex}
+      <section class="dashboard-panel container" id="siparisler">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">HESABIM</span>
+            <h2>Kullanıcı ve sipariş alanı</h2>
+          </div>
+        </div>
 
-.search input{flex:1;padding:16px;border:1px solid #555;background:#171717;color:white;border-radius:8px 0 0 8px}
+        <div class="account-layout">
+          <div class="account-card auth-card">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-auth-tab="login">Giriş</button>
+              <button class="tab-btn" data-auth-tab="register">Kayıt</button>
+            </div>
 
-.search button{padding:15px 22px;background:#d6ad55;border:0;font-weight:bold;border-radius:0 8px 8px 0}
+            <form id="loginForm" class="auth-form active">
+              <label>
+                E-posta
+                <input type="email" placeholder="ornek@merkado.com" required />
+              </label>
+              <label>
+                Şifre
+                <input type="password" placeholder="••••••••" required />
+              </label>
+              <button type="submit" class="primary-btn full">Giriş Yap</button>
+            </form>
 
-.categories{padding:35px 7%}
+            <form id="registerForm" class="auth-form">
+              <label>
+                Ad Soyad
+                <input type="text" placeholder="Ad Soyad" required />
+              </label>
+              <label>
+                E-posta
+                <input type="email" placeholder="ornek@merkado.com" required />
+              </label>
+              <label>
+                Şifre
+                <input type="password" placeholder="En az 8 karakter" required />
+              </label>
+              <button type="submit" class="primary-btn full">Kayıt Ol</button>
+            </form>
+          </div>
 
-.categories h2{color:#e2bc70;margin-bottom:25px}
+          <div class="account-card orders-card">
+            <h3>Son Siparişlerim</h3>
+            <div class="order-list" id="orderList"></div>
+          </div>
+        </div>
+      </section>
 
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+      <section class="support container" id="destek">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">DESTEK</span>
+            <h2>Müşteri destek sistemi</h2>
+          </div>
+        </div>
 
-.card{background:#171717;border:1px solid #303030;border-radius:12px;padding:30px 15px;text-align:center}
+        <div class="support-layout">
+          <div class="support-card">
+            <h3>Destek Talebi Oluştur</h3>
+            <form id="supportForm">
+              <label>
+                Konu
+                <input type="text" placeholder="Sipariş veya teknik destek" required />
+              </label>
+              <label>
+                Mesaj
+                <textarea rows="5" placeholder="Sorununuzu yazın..." required></textarea>
+              </label>
+              <button type="submit" class="primary-btn full">Talep Gönder</button>
+            </form>
+          </div>
 
-.card span{font-size:30px}
+          <div class="support-card faq-card">
+            <h3>Sık Sorulan Sorular</h3>
+            <div class="faq-item">
+              <strong>Ödeme güvenli mi?</strong>
+              <p>Şu anda demo ödeme kullanılmaktadır. Gerçek ödeme için güvenli sunucu tarafı altyapısı gerekir.</p>
+            </div>
+            <div class="faq-item">
+              <strong>Teslimat ne kadar sürer?</strong>
+              <p>Dijital ürünlerde anlık teslimat; oyun ürünleri için işlem süresi kısa süreli yapılır.</p>
+            </div>
+            <div class="faq-item">
+              <strong>İade ve değişim var mı?</strong>
+              <p>Dijital ürünlerde iade koşulları; gerçek ödeme sistemi hazırlandığında yeniden tanımlanacaktır.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-.card h3{margin-top:12px;font-size:16px}
+      <section class="admin container" id="yonetim-paneli">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">YÖNETİM PANELİ</span>
+            <h2>Satış ve operasyon yönetimi</h2>
+          </div>
+        </div>
 
-footer{text-align:center;padding:30px;color:#888;border-top:1px solid #292929;margin-top:60px}
+        <div class="admin-grid">
+          <div class="admin-card summary-card">
+            <div class="mini-stat">
+              <span>Toplam satış</span>
+              <strong>₺84.500</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Aktif sipariş</span>
+              <strong>128</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Müşteri</span>
+              <strong>3.940</strong>
+            </div>
+          </div>
 
-@media(max-width:650px){
+          <div class="admin-card">
+            <h3>Yönetim menüsü</h3>
+            <ul class="menu-list">
+              <li>Ürün ekleme ve düzenleme</li>
+              <li>Fiyat ve stok yönetimi</li>
+              <li>Sipariş yönetimi</li>
+              <li>Müşteri yönetimi</li>
+              <li>Kampanya yönetimi</li>
+              <li>Satış raporları</li>
+            </ul>
+          </div>
 
-header{padding:18px 5%}
+          <div class="admin-card">
+            <h3>Son faaliyet</h3>
+            <ul class="activity-list">
+              <li>12 yeni kullanıcı kaydı</li>
+              <li>7 ürün stoğu güncellendi</li>
+              <li>4 kampanya aktif</li>
+              <li>24 sipariş teslim edildi</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
 
-nav a{margin-left:9px;font-size:11px}
+    <aside class="cart-panel" id="cartPanel" aria-label="Sepet paneli">
+      <div class="cart-header">
+        <h3>Sepetim</h3>
+        <button id="closeCart" class="close-btn" aria-label="Sepeti kapat">✕</button>
+      </div>
 
-.hero h1{font-size:35px}
+      <div id="cartItems" class="cart-items"></div>
 
-.cards{grid-template-columns:repeat(2,1fr)}
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Toplam</span>
+          <strong id="cartTotal">₺0</strong>
+        </div>
+        <button id="checkoutBtn" class="primary-btn full">Demo Ödeme ile Devam Et</button>
+        <p class="demo-note">
+          Not: Gerçek ödeme ve teslimat işlemleri için sunucu tarafı güvenlik ve entegrasyon gereklidir. Bu demo sürümünde ödeme metodu gösterim amaçlıdır.
+        </p>
+      </div>
+    </aside>
 
-}
+    <div class="overlay" id="overlay"></div>
 
-</style>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="brand">MERKADO</div>
+          <p>Alışverişin Yeni Merkezi</p>
+        </div>
+        <div>
+          <h4>Adres</h4>
+          <p>İstanbul / Türkiye</p>
+        </div>
+        <div>
+          <h4>İletişim</h4>
+          <p>destek@merkado.com</p>
+        </div>
+      </div>
+    </footer>
 
-</head>
-
-<body>
-
-<header>
-
-<div class="logo">MERKADO</div>
-
-<nav>
-
-<a href="#">Ana Sayfa</a>
-
-<a href="#kategoriler">Kategoriler</a>
-
-<a href="#">Giriş</a>
-
-</nav>
-
-</header>
-
-<section class="hero">
-
-<h1>ALIŞVERİŞİN YENİ MERKEZİ</h1>
-
-<p>Aradığın her şey, tek bir yerde.</p>
-
-<div class="search">
-
-<input type="text" placeholder="Ürün veya kategori ara...">
-
-<button>Ara</button>
-
-</div>
-
-</section>
-
-<section class="categories" id="kategoriler">
-
-<h2>Kategoriler</h2>
-
-<div class="cards">
-
-<div class="card"><span>🛍️</span><h3>E-Ticaret</h3></div>
-
-<div class="card"><span>🎮</span><h3>Oyun Ürünleri</h3></div>
-
-<div class="card"><span>💎</span><h3>Dijital Ürünler</h3></div>
-
-<div class="card"><span>🎁</span><h3>Kampanyalar</h3></div>
-
-</div>
-
-</section>
-
-<footer>© 2026 MERKADO – Tüm hakları saklıdır.</footer>
-
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
