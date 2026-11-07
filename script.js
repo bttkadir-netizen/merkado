@@ -80,21 +80,16 @@ const orderHistory = [
   { id: 'TR-1061', total: '₺89', status: 'İşlemde' },
 ];
 
-const productGrid = document.getElementById('productGrid');
-const cartItems = document.getElementById('cartItems');
-const cartTotal = document.getElementById('cartTotal');
-const cartCount = document.getElementById('cartCount');
-const cartPanel = document.getElementById('cartPanel');
-const overlay = document.getElementById('overlay');
-const searchInput = document.getElementById('mainSearch');
-const searchBtn = document.getElementById('searchBtn');
-const orderList = document.getElementById('orderList');
-
 function formatMoney(value) {
   return `₺${value.toLocaleString('tr-TR')}`;
 }
 
+function getCartTotal() {
+  return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+}
+
 function renderProducts(filtered = products) {
+  const productGrid = document.getElementById('productGrid');
   if (!productGrid) return;
 
   productGrid.innerHTML = filtered
@@ -137,6 +132,10 @@ function renderProducts(filtered = products) {
 }
 
 function renderCart() {
+  const cartItems = document.getElementById('cartItems');
+  const cartTotal = document.getElementById('cartTotal');
+  const cartCount = document.getElementById('cartCount');
+
   if (!cartItems || !cartTotal || !cartCount) return;
 
   if (!cart.length) {
@@ -162,7 +161,7 @@ function renderCart() {
     )
     .join('');
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = getCartTotal();
   cartTotal.textContent = formatMoney(total);
   cartCount.textContent = String(cart.reduce((sum, item) => sum + item.quantity, 0));
 
@@ -179,18 +178,23 @@ function renderCart() {
 }
 
 function openCart() {
+  const cartPanel = document.getElementById('cartPanel');
+  const overlay = document.getElementById('overlay');
   if (!cartPanel || !overlay) return;
   cartPanel.classList.add('open');
   overlay.classList.add('show');
 }
 
 function closeCart() {
+  const cartPanel = document.getElementById('cartPanel');
+  const overlay = document.getElementById('overlay');
   if (!cartPanel || !overlay) return;
   cartPanel.classList.remove('open');
   overlay.classList.remove('show');
 }
 
 function filterProducts() {
+  const searchInput = document.getElementById('mainSearch');
   if (!searchInput) return;
 
   const term = searchInput.value.trim().toLowerCase();
@@ -208,6 +212,7 @@ function filterProducts() {
 }
 
 function renderOrders() {
+  const orderList = document.getElementById('orderList');
   if (!orderList) return;
 
   orderList.innerHTML = orderHistory
@@ -289,6 +294,7 @@ function setupCart() {
 
   if (cartToggle) cartToggle.addEventListener('click', openCart);
   if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+  const overlay = document.getElementById('overlay');
   if (overlay) overlay.addEventListener('click', closeCart);
 
   if (checkoutBtn) {
@@ -298,17 +304,7 @@ function setupCart() {
         return;
       }
 
-      alert('Demo ödeme sistemi kullanılıyor. Gerçek ödeme ve teslimat işlemleri için güvenli sunucu tarafı entegrasyonu gerekir.');
-      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      orderHistory.unshift({
-        id: `TR-${Math.floor(Math.random() * 9000 + 1000)}`,
-        total: formatMoney(total),
-        status: 'Ödeme Bekleniyor',
-      });
-      cart.length = 0;
-      renderCart();
-      renderOrders();
-      closeCart();
+      window.location.href = 'checkout.html';
     });
   }
 }
@@ -327,6 +323,8 @@ function setupMainActions() {
     });
   }
 
+  const searchBtn = document.getElementById('searchBtn');
+  const searchInput = document.getElementById('mainSearch');
   if (searchBtn) searchBtn.addEventListener('click', filterProducts);
   if (searchInput) searchInput.addEventListener('input', filterProducts);
 }
@@ -400,6 +398,89 @@ function initAdminPage() {
   }
 }
 
+function initCategoriesPage() {
+  const categoryGrid = document.getElementById('categoryGrid');
+  const categoryFilter = document.getElementById('categoryFilter');
+  if (!categoryGrid) return;
+
+  const renderCategoryProducts = (filterValue = 'all') => {
+    const visibleProducts = filterValue === 'all'
+      ? products
+      : products.filter((product) => product.category.toLowerCase() === filterValue.toLowerCase());
+
+    categoryGrid.innerHTML = visibleProducts
+      .map(
+        (product) => `
+          <article class="product-card">
+            <div class="product-image">${product.icon}</div>
+            <div class="product-body">
+              <span class="product-badge">${product.badge}</span>
+              <h3>${product.name}</h3>
+              <p>${product.description}</p>
+              <div class="product-meta">
+                <span class="product-price">${formatMoney(product.price)}</span>
+                <span>${product.category}</span>
+              </div>
+              <button class="primary-btn add-to-cart" data-product-id="${product.id}">Sepete Ekle</button>
+            </div>
+          </article>
+        `
+      )
+      .join('');
+
+    document.querySelectorAll('.add-to-cart').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const productId = Number(event.currentTarget.dataset.productId);
+        const product = products.find((item) => item.id === productId);
+        if (!product) return;
+        const existing = cart.find((entry) => entry.id === product.id);
+        if (existing) existing.quantity += 1;
+        else cart.push({ ...product, quantity: 1 });
+        renderCart();
+        openCart();
+      });
+    });
+  };
+
+  renderCategoryProducts();
+
+  if (categoryFilter) {
+    categoryFilter.addEventListener('change', (event) => {
+      renderCategoryProducts(event.target.value);
+    });
+  }
+}
+
+function initCheckoutPage() {
+  const checkoutSummary = document.getElementById('checkoutSummary');
+  const checkoutForm = document.getElementById('checkoutForm');
+  if (!checkoutSummary || !checkoutForm) return;
+
+  const total = getCartTotal();
+  const shipping = cart.length ? 25 : 0;
+  const finalTotal = total + shipping;
+
+  checkoutSummary.innerHTML = `
+    <div class="summary-box">
+      <h3>Sipariş Özeti</h3>
+      ${cart.length ? cart.map((item) => `
+        <div class="sum-line">
+          <span>${item.name} x ${item.quantity}</span>
+          <strong>${formatMoney(item.price * item.quantity)}</strong>
+        </div>
+      `).join('') : '<p class="demo-note">Sepet boş.</p>'}
+      <div class="sum-line"><span>Taşıma</span><strong>${formatMoney(shipping)}</strong></div>
+      <div class="sum-line"><span>Toplam</span><strong>${formatMoney(finalTotal)}</strong></div>
+    </div>
+  `;
+
+  checkoutForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    alert('Demo ödeme onayı alındı. Gerçek ödeme ve teslimat için güvenli sunucu tarafı altyapısı gereklidir.');
+    window.location.href = 'index.html';
+  });
+}
+
 renderProducts();
 renderCart();
 renderOrders();
@@ -408,3 +489,5 @@ setupCart();
 setupMainActions();
 initDetailPage();
 initAdminPage();
+initCategoriesPage();
+initCheckoutPage();
